@@ -1,11 +1,16 @@
 import React from 'react';
 import { StyledButton } from './styled'
-import { ICardProps } from './types'
+import { IButtonProps } from './types'
 
-const Button: React.FC<ICardProps> = (...props) => {
+const Button: React.FC<IButtonProps> = ({
+  children,
+  ...props
+}) => {
   return (
-    <StyledButton {...props}>Primary</StyledButton>
+    <>
+      <StyledButton {...props as any}>{children}</StyledButton>
+    </>
   )
 }
 
-export default Button;
+export default Button

@@ -1,13 +1,20 @@
 import styled, { css } from 'styled-components'
 
-export const StyledButton = styled.button.attrs(props => ({
+interface IStyledButton {
+  size?: 'small' | 'default' | 'large'
+}
+
+export const StyledButton = styled.button.attrs({
   className: 'btn',
   type: "button"
-}))`
-  ${({ theme }) => css`
+})<IStyledButton>`
+  ${({ theme, size }) => css`
     color: ${theme.color?.font?.secondary};
     background-color: ${theme.color?.background?.secondary};
     border-radius: 30px;
+    ${size === 'large' && `padding: 2em 4em;`}
+    ${(!size || size === 'small') && `padding: .5em 1em;`}
+    ${size === 'default' && `padding: 1em 2em;`}
 
     &:hover {
       color: ${theme.color?.font?.secondary};
